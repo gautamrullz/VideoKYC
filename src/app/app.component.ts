@@ -55,6 +55,11 @@ export class AppComponent implements OnInit {
   loadFunction(loadFunction: any) {
     console.log(loadFunction);
     console.log("loded");
+    console.log(faceapi.nets.ssdMobilenetv1.isLoaded);
+    console.log(faceapi.nets.tinyFaceDetector.isLoaded);
+    console.log(faceapi.nets.faceRecognitionNet.isLoaded);
+    console.log(faceapi.nets.faceLandmark68Net.isLoaded);
+
     throw new Error('Function not implemented.');
   }
   
@@ -98,24 +103,26 @@ export class AppComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     }
-    this.image =await faceapi.bufferToImage(this.imagePath.files[0]); 
+    const image = this.image = await faceapi.bufferToImage(this.imagePath.files[0]); 
     console.log(this.image);
     //  event.target.files[0]
+    const fullFaceDescriptions = await faceapi.detectAllFaces(image)
+    console.log(fullFaceDescriptions);
   }
 
   async find() {
-    const canvas1 = faceapi.createCanvasFromMedia(this.image)
-    this.canvas.nativeElement.appendChild(canvas1);
-    const displaySize = { width: this.image.width, height: this.image.height }
-    faceapi.matchDimensions(canvas1, displaySize)
+    // const canvas1 = faceapi.createCanvasFromMedia(this.image)
+    // this.canvas.nativeElement.appendChild(canvas1);
+    // const displaySize = { width: this.image.width, height: this.image.height }
+    // faceapi.matchDimensions(canvas1, displaySize)
     const fullFaceDescriptions = await faceapi.detectAllFaces(this.image).withFaceLandmarks().withFaceDescriptors()
     console.log((fullFaceDescriptions).length);
-    const resizeDetection = faceapi.resizeResults(fullFaceDescriptions, displaySize)
-    resizeDetection.forEach(detection => {
-      const box = detection.detection.box
-      const drowBox = new faceapi.draw.DrawBox(box);
-      drowBox.draw(canvas1);
-    })
+    // const resizeDetection = faceapi.resizeResults(fullFaceDescriptions, displaySize)
+    // resizeDetection.forEach(detection => {
+      // const box = detection.detection.box
+      // const drowBox = new faceapi.draw.DrawBox(box);
+      // drowBox.draw(canvas1);
+    // })
     const detections1 = await faceapi.detectAllFaces(this.image, new faceapi.SsdMobilenetv1Options())
     console.log(detections1);
   }
