@@ -1,11 +1,10 @@
 // import {nets, detectAllFaces,detectSingleFace, euclideanDistance, fetchImage, SsdMobilenetv1Options,isMediaLoaded } from 'face-api.js'
 import * as faceapi from 'face-api.js';
-import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { observable, Observable, Subject } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+// import {Observable, Subject } from 'rxjs';
 
 import * as fs from 'fs';
 // import { DrawBox } from 'face-api.js/build/commonjs/draw';
-
 
 @Component({
   selector: 'app-root',
@@ -29,10 +28,10 @@ export class AppComponent implements OnInit {
   // image: HTMLImageElement;
   // video: any;
 
-  // private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
   constructor() {
 
   }
+
   async ngOnInit() {
     try {
 
