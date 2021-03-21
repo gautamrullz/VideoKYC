@@ -1,0 +1,19 @@
+.video{
+    border: 1px solid black;
+    /* margin: auto; */
+}
+.buttonCss{
+    text-align: center;
+}
+.canvasDiv{
+    width: 200px;
+    height: 200px;
+}
+.col-6{
+    position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 45%;
+  float: left;
+}
